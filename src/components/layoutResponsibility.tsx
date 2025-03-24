@@ -53,8 +53,8 @@ export const LayoutResponsibility = ({
       <footer className="fixed bottom-0 hidden h-12 w-full bg-zinc-900 p-4 text-white lg:block">
         <div className="container mx-auto text-center lg:max-w-5xl">
           <p>
-            &copy; {new Date().getFullYear()} Cronos App Clin. Todos os direitos
-            reservados.
+            &copy; {new Date().getFullYear()} Estoque Fácil App. Todos os
+            direitos reservados.
           </p>
         </div>
       </footer>
