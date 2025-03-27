@@ -16,6 +16,9 @@ export async function GET() {
       orderBy: {
         createdAt: "desc",
       },
+      include: {
+        product: true,
+      },
     });
     return NextResponse.json(posts);
   } catch (error) {

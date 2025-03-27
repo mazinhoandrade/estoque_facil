@@ -35,6 +35,12 @@ export const LayoutResponsibility = async ({
                 Estoque
               </Link>
               <Link
+                href="/admin/categoria"
+                className="hover:bg-opacity-200 rounded-md p-2 hover:bg-white"
+              >
+                Categoria
+              </Link>
+              <Link
                 href="/admin/venda"
                 className="hover:bg-opacity-200 rounded-md p-2 hover:bg-white"
               >

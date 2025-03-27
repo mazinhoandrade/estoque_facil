@@ -44,6 +44,25 @@ export const getCategories = async (): Promise<Category[] | []> => {
   }
 };
 
+export const setCategory = async (
+  data: Omit<Category, "id">,
+): Promise<Category> => {
+  try {
+    const result = await req.post("categories", data);
+    return result.data;
+  } catch (error) {
+    console.log(error);
+    return {} as Product;
+  }
+};
+
+export const delCategory = async (id: string) => {
+  try {
+    return await req.delete(`categories/${id}`);
+  } catch (error) {
+    return error;
+  }
+};
 // export const editUser = async (data: User): Promise<User> => {
 //   const result = await req.patch(`api/user/${data.id}`, data, {
 //     headers: {

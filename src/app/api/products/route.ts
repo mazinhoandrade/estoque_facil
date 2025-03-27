@@ -5,16 +5,36 @@ import prisma from "@/lib/prisma";
 
 import { authOptions } from "../auth/[...nextauth]/route";
 
-export async function GET() {
+export async function GET(req: Request) {
   // const session = await getServerSession(authOptions);
   // if (!session) {
   //   return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
   // }
+  const { searchParams } = new URL(req.url)
+  const query = searchParams.get('q') || ''
   try {
     const posts = await prisma.product.findMany({
+      where: {
+        OR: [
+          {
+            name: {
+              contains: query,
+            },
+          },
+          {
+            code: {
+              contains: query,
+            },
+          },
+        ],
+      },
       orderBy: {
         createdAt: "desc",
       },
+      include: {
+        category: true,
+      },
+      take: 10,
     });
     return  NextResponse.json(posts);
   } catch (error) {
@@ -35,7 +55,7 @@ export async function POST(request: Request) {
     const { name, description, quantity, price, categoryId, code } =
       await request.json();
 
-    if (!name || !code || !description || !quantity || !price || !categoryId) {
+    if (!name || !code || !quantity || !price || !categoryId) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 },

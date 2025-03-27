@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { delProduct, setProduct } from "./admin";
+import { delCategory, delProduct, setCategory, setProduct } from "./admin";
 
 //const queryClient = useQueryClient();
 
@@ -25,6 +25,32 @@ export const useDelProduct = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["products"],
+      });
+    },
+  });
+};
+
+export const useCategory = () => {
+  const queryClient = useQueryClient();
+
+  const mutationUser = useMutation({
+    mutationFn: setCategory,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["categories"],
+      });
+    },
+  });
+  return mutationUser;
+};
+
+export const useDelCategory = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: delCategory,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["categories"],
       });
     },
   });

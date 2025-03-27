@@ -1,7 +1,7 @@
 "use client"
 
 import { TrendingUp } from "lucide-react"
-import { CartesianGrid, LabelList, Line, LineChart, XAxis } from "recharts"
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 
 import {
   Card,
@@ -18,12 +18,18 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "January", vendas: 2, total:200  },
+  { month: "February", vendas: 10, total:150  },
+  { month: "March", vendas: 20 , total:100 },
+  { month: "April", vendas: 10, total:100 },
+  { month: "May", vendas: 15 , total:100 },
+  { month: "June", vendas: 10 , total:100 },
+  { month: "July", vendas: 15 , total:100 },
+  { month: "August", vendas: 10 , total:100 },
+  { month: "September", vendas: 10 , total:100 },
+  { month: "October", vendas: 20 , total:100 },
+  { month: "November", vendas: 50 , total:100 },
+  { month: "December", vendas: 30 , total:100 },
 ]
 
 const chartConfig = {
@@ -37,64 +43,43 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export function Graphic() {
+interface Props {
+  chartData: any[]
+}
+
+export function Graphic({chartData}: Props) {
+
+  
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Line Chart - Label</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>Tota de vendas</CardTitle>
+        <CardDescription>2025</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <LineChart
-            accessibilityLayer
-            data={chartData}
-            margin={{
-              top: 20,
-              left: 12,
-              right: 12,
-            }}
-          >
+          <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="month"
               tickLine={false}
+              tickMargin={10}
               axisLine={false}
-              tickMargin={8}
               tickFormatter={(value) => value.slice(0, 3)}
             />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent indicator="line" />}
+              content={<ChartTooltipContent indicator="dashed" />}
             />
-            <Line
-              dataKey="desktop"
-              type="natural"
-              stroke="var(--color-desktop)"
-              strokeWidth={2}
-              dot={{
-                fill: "var(--color-desktop)",
-              }}
-              activeDot={{
-                r: 6,
-              }}
-            >
-              <LabelList
-                position="top"
-                offset={12}
-                className="fill-foreground"
-                fontSize={12}
-              />
-            </Line>
-          </LineChart>
+            <Bar dataKey="vendas" fill="var(--color-desktop)" radius={4} />
+            <Bar dataKey="total" fill="var(--color-mobile)" radius={4} />
+          </BarChart>
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+        Mostrando o total de vendas dos últimos 12 meses       
         </div>
       </CardFooter>
     </Card>

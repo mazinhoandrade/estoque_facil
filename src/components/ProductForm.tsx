@@ -188,12 +188,11 @@ export const ProductForm = () => {
                         <SelectValue placeholder="Selecione a categoria" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent className="max-h-60 w-full overflow-x-auto bg-primary">
+                    <SelectContent className="">
                       {categories.data?.map((category) => (
                         <SelectItem
                           key={category.id}
                           value={category.id}
-                          className="w-60 bg-primary"
                         >
                           {category.name}
                         </SelectItem>
