@@ -6,18 +6,17 @@ import prisma from "@/lib/prisma";
 import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function GET() {
-  const session = await getServerSession(authOptions);
-
-  if (!session) {
-    return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
-  }
+  // const session = await getServerSession(authOptions);
+  // if (!session) {
+  //   return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
+  // }
   try {
     const posts = await prisma.product.findMany({
       orderBy: {
         createdAt: "desc",
       },
     });
-    return NextResponse.json(posts);
+    return  NextResponse.json(posts);
   } catch (error) {
     console.error(error);
     return NextResponse.json(

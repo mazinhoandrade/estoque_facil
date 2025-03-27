@@ -39,7 +39,7 @@ const chartConfig = {
 
 export function Graphic() {
   return (
-    <Card className="w-auto">
+    <Card>
       <CardHeader>
         <CardTitle>Line Chart - Label</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
