@@ -1,12 +1,19 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
 
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { NavMobile } from "@/components/navMobile";
 
-export const LayoutResponsibility = ({
+import { LoggedUser } from "./loggedUser";
+
+export const LayoutResponsibility = async ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
+  const session = await getServerSession(authOptions);
+
   return (
     <div className="flex flex-col">
       {/* Header visível apenas em telas maiores */}
@@ -16,19 +23,19 @@ export const LayoutResponsibility = ({
           <div className="flex flex-row items-center">
             <nav className="flex flex-row items-center space-x-4">
               <Link
-                href="/"
+                href="/admin"
                 className="hover:bg-opacity-200 rounded-md p-2 hover:bg-white"
               >
                 Início
               </Link>
               <Link
-                href="/produto"
+                href="/admin/produto"
                 className="hover:bg-opacity-200 rounded-md p-2 hover:bg-white"
               >
                 Estoque
               </Link>
               <Link
-                href="/venda"
+                href="/admin/venda"
                 className="hover:bg-opacity-200 rounded-md p-2 hover:bg-white"
               >
                 Vendas
@@ -39,6 +46,7 @@ export const LayoutResponsibility = ({
               >
                 Conta
               </Link>
+              <LoggedUser user={session?.user?.name as string} />
             </nav>
           </div>
         </div>

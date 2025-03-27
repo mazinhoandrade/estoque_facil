@@ -14,14 +14,14 @@ export const metadata: Metadata = {
   title: "Estoque Fácil",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-br" className="dark">
-      <body className={`${poppins.className} h-screen antialiased`}>
+    <html lang="pt-br" className="light">
+      <body className={`${poppins.className} h-screen`}>
         <LayoutResponsibility>{children}</LayoutResponsibility>
         <Toaster />
       </body>
