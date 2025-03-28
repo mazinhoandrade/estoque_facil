@@ -82,6 +82,27 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
+/* Adicione isso ao seu arquivo global CSS */
+
+/* @media print {
+  body * {
+    visibility: hidden;
+  }
+  .printable-area,
+  .printable-area * {
+    visibility: visible;
+  }
+  .printable-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+} */
 
 @layer base {
   * {

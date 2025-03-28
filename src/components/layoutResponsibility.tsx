@@ -46,12 +46,7 @@ export const LayoutResponsibility = async ({
               >
                 Vendas
               </Link>
-              <Link
-                href="/menu"
-                className="hover:bg-opacity-200 rounded-md p-2 hover:bg-white"
-              >
-                Conta
-              </Link>
+            
               <LoggedUser user={session?.user?.name as string} />
             </nav>
           </div>

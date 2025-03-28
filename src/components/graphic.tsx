@@ -33,14 +33,18 @@ const chartData = [
 ]
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
+  vendas: {
+    label: "Total de vendas R$",
     color: "hsl(var(--chart-1))",
   },
-  mobile: {
-    label: "Mobile",
-    color: "hsl(var(--chart-2))",
+  pedidos: {
+    label: "Total de pedidos",
+    color: "hsl(237, 100%, 50%)",
   },
+  produtos: {
+    label: "Total de produtos",
+    color: "hsl(var(--chart-2))",
+  }
 } satisfies ChartConfig
 
 interface Props {
@@ -72,8 +76,9 @@ export function Graphic({chartData}: Props) {
               cursor={false}
               content={<ChartTooltipContent indicator="dashed" />}
             />
-            <Bar dataKey="vendas" fill="var(--color-desktop)" radius={4} />
-            <Bar dataKey="total" fill="var(--color-mobile)" radius={4} />
+            <Bar dataKey="vendas" fill="var(--color-vendas)" radius={4} />
+            <Bar dataKey="pedidos" fill="var(--color-pedidos)" radius={4} />
+            <Bar dataKey="produtos" fill="var(--color-produtos)" radius={4} />
           </BarChart>
         </ChartContainer>
       </CardContent>

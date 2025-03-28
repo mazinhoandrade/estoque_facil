@@ -1,7 +1,17 @@
 "use client";
-import { Barcode, House, Menu, ShoppingCart, Tag } from "lucide-react";
+import {
+  Barcode,
+  House,
+  Menu,
+  PanelLeftClose,
+  ShoppingCart,
+  Tag,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
+
+import { Button } from "./ui/button";
 
 export const NavMobile = () => {
   //const [isActive, setIsActive] = useState("home");
@@ -59,13 +69,18 @@ export const NavMobile = () => {
             <span className="text-xs">Vendas</span>
           </button>
         </Link>
-
-        <Link href="/admin/menu" className={`${handleLinkClick("menu")}`}>
+        <div onClick={() => signOut()}>
+          <span className="text-2xl">
+            <PanelLeftClose />
+          </span>
+          <span className="text-xs">Sair</span>
+        </div>
+        {/* <Link href="/admin/menu" className={`${handleLinkClick("menu")}`}>
           <span className="text-2xl">
             <Menu />
           </span>
           <span className="text-xs">Conta</span>
-        </Link>
+        </Link> */}
       </div>
     </nav>
   );
