@@ -21,9 +21,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-import { useProduct } from "../server/useMutations";
-import { useCategories } from "../server/useQueries";
+import { useProduct } from "@/server/useMutations";
+import { useCategories } from "@/server/useQueries";
 const formSchema = z.object({
   name: z.string({ required_error: "Nome é obrigatório" }),
   code: z.string({ required_error: "Código é obrigatório" }),
@@ -32,7 +31,7 @@ const formSchema = z.object({
   price: z.string({ required_error: "Preço é obrigatório" }),
   categoryId: z.string({ required_error: "Categoria é obrigatória" }),
 });
-export const ProductForm = () => {
+export const NewProduct = () => {
   const setProduct = useProduct();
   const categories = useCategories();
 
@@ -190,10 +189,7 @@ export const ProductForm = () => {
                     </FormControl>
                     <SelectContent className="">
                       {categories.data?.map((category) => (
-                        <SelectItem
-                          key={category.id}
-                          value={category.id}
-                        >
+                        <SelectItem key={category.id} value={category.id}>
                           {category.name}
                         </SelectItem>
                       ))}

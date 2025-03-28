@@ -1,5 +1,6 @@
-import { Category, Product } from "@prisma/client";
+import { Category } from "@prisma/client";
 
+import { Product } from "../types/product";
 import { req } from "./axios";
 
 export const getProducts = async (): Promise<Product[] | []> => {

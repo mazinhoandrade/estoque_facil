@@ -111,7 +111,7 @@ export const NewSale = () => {
   };
 
   const updateQuantity = (id: string, quantity: number) => {
-    console.log(products.find((p) => p.id === id));
+    if (quantity < 1) return;
     setProducts(products.map((p) => (p.id === id ? { ...p, quantity } : p)));
   };
 
@@ -127,6 +127,15 @@ export const NewSale = () => {
         title: "Erro ao criar venda",
         description:
           "Por favor, preencha o nome do cliente e adicione produtos ao carrinho.",
+      });
+      return;
+    }
+    const productLimit = products.find((p) => p.quantity > p.quantityMax);
+
+    if (productLimit) {
+      toast({
+        title: "Quantidade insuficiente",
+        description: `O${productLimit?.length > 1 ? "s" : ""} produto${productLimit?.length > 1 ? "s" : ""} ${productLimit.name} tem ${productLimit.quantityMax} disponível`,
       });
       return;
     }
